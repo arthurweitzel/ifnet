@@ -12,7 +12,7 @@ SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
 
 
-all: $(EXECUTABLE)
+all: $(EXECUTABLE) load_test
 
 $(EXECUTABLE): $(OBJECTS)
 	@echo "LD   $@"
@@ -27,12 +27,12 @@ $(OBJ_DIR):
 
 clean:
 	@echo "Cleaning project..."
-	@rm -rf $(OBJ_DIR) $(EXECUTABLE)
+	@rm -rf $(OBJ_DIR) $(EXECUTABLE) load_test client
 
 load_test: load_test.cpp
 	@echo "CXX  load_test.cpp"
 	$(CXX) $(CXXFLAGS) load_test.cpp -o load_test $(LDFLAGS)
-	@echo "Build finalizado. Execute com: ./load_test --help"
+	@echo "Build finalizado. Execute com: ./load_test"
 
 client: client.cpp
 	@echo "CXX  client.cpp"
